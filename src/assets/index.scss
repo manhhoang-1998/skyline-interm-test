@@ -1,0 +1,19 @@
+@import url("http://fonts.cdnfonts.com/css/svn-gilroy");
+* {
+  box-sizing: inherit;
+}
+html {
+  font-family: "SVN-Gilroy", sans-serif;
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+body {
+  background-color: #e5e5e5;
+  margin: 0;
+}
+a {
+  text-decoration: none;
+}
+button {
+  cursor: pointer;
+}

@@ -1,0 +1,43 @@
+$text-color: #888;
+.page {
+  max-width: 1440px;
+  margin: auto;
+  background-color: #fff;
+  height: 100vh;
+  .heading {
+    height: 70px;
+    background-color: rgb(14, 14, 119);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;    
+    &-text {
+      color: azure;
+      font-size: 1.6rem;
+    }
+  }
+  .container {
+    min-width: 500px;
+    width: 40%;
+    height: 70vh;
+    box-shadow: 5px 5px 5px 5px rgb(197, 197, 202);
+    margin:20px auto;
+    .title {
+      margin: 10px;
+      font-size: 3rem;
+      color: rgb(15, 158, 15);
+    }
+    .list {
+      color: $text-color;
+      font-size: 1.8rem;
+      .item {
+        color: $text-color;
+        line-height: 30px;
+        margin-left: 15px;
+        &:hover {
+          color: rgb(205, 75, 75);
+        }
+      }
+    }
+  }
+}
