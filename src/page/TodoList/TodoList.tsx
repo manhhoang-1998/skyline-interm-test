@@ -2,7 +2,7 @@ import ComeBack from "component/comeback/ComeBack";
 import { FC, useEffect } from "react";
 import { TodoData, useTodo } from "./hook/useTodo";
 import "./TodoList.scss";
-import CloseOutlinedIcon from "@material-ui/icons/CloseOutlined";
+import { CloseOutlined } from "@ant-design/icons";
 
 const TodoList: FC = () => {
   const {
@@ -59,11 +59,13 @@ const TodoList: FC = () => {
                     editTodo(item.id, !item.isCompleted);
                   }}
                 ></button>
-                <label className="todo-item-icon" htmlFor="todo-close">
-                  <CloseOutlinedIcon color="disabled" />
+                <label className="todo-item-icon" htmlFor={`close-${item.id}`}>
+                  <CloseOutlined
+                    style={{ fontSize: "1.4rem", color: "#999" }}
+                  />
                 </label>
                 <button
-                  id="todo-close"
+                  id={`close-${item.id}`}
                   style={{ display: "none" }}
                   onClick={() => deleteTodo(item.id)}
                 ></button>

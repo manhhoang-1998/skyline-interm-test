@@ -41,7 +41,6 @@ export const useTodo = (): ITodo => {
           isCompleted: false,
         });
         setTodoLIst([...todoList, response.data]);
-        console.log(response);
         setText("");
       }
     } catch (error) {
