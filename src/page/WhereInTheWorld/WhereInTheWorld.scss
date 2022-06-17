@@ -1,0 +1,91 @@
+.world-page {
+  min-height: 100vh;
+  background-color: var(--gray-5-black-17);
+  .loading-screen {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: "var(--loading-screen)";
+  }
+  .world-body {
+    max-width: 1440px;
+    margin: auto;
+    .world-option {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 15px;
+      margin: 30px 0;
+      &__search {
+        background-color: var(--gray-6-black-3);
+        margin-right: 5px;
+        span {
+          input {
+            background-color: transparent;
+            color: var(--black-3-gray-6);
+            border: none;
+            &::placeholder {
+              color: var(--black-3-gray-6);
+            }
+          }
+          span {
+            background-color: transparent;
+            button {
+              background-color: transparent;
+              border: none;
+              span {
+                color: var(--black-3-gray-6);
+              }
+            }
+          }
+        }
+      }
+      &__select {
+        width: 150px;
+        background-color: var(--gray-6-black-3);
+        div {
+          background-color: transparent;
+          border: none;
+        }
+        span {
+          color: var(--black-3-gray-6);
+        }
+      }
+    }
+    .world-list {
+      padding: 0 15px;
+      .world-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        min-height: 350px;
+        background-color: var(--gray-6-black-3);
+        border-radius: 8px;
+        &__flag {
+          width: 100%;
+          border-radius: 10px;
+        }
+        &__desc {
+          color: var(--black-3-gray-6);
+          display: flex;
+          flex-direction: column;
+          font-size: 1.6rem;
+          font-weight: 400;
+          margin: 10px 15px;
+          &-name {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 20px;
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+  }
+}

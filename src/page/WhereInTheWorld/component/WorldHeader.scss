@@ -1,0 +1,31 @@
+.world-header {
+    height: 70px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    margin: auto;
+    background-color: var(--gray-6-black-3);
+    &-wrap {
+      margin: auto;
+      max-width: 1440px;
+      padding: 0 15px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      &__title {
+        color: var(--black-3-gray-6);
+        font-size: 1.8rem;
+        font-weight: 700;
+      }
+      &__theme {
+        cursor: pointer;
+        user-select: none;
+        color: var(--black-3-gray-6);
+        font-size: 1.6rem;
+        font-weight: 500;
+        &-icon {
+          color: var(--black-3-gray-6);
+          margin-right: 5px;
+        }
+      }
+    }
+  }

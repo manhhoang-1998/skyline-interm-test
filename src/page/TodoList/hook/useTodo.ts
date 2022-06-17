@@ -62,7 +62,7 @@ export const useTodo = (): ITodo => {
 
   const editTodo = async (id: string, isCompleted: boolean) => {
     try {
-      const response = await todoApi.putTodo(id, { isCompleted: isCompleted });
+      await todoApi.putTodo(id, { isCompleted: isCompleted });
       getTodo();
     } catch (error) {
       console.log(error);

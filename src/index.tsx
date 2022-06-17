@@ -1,15 +1,21 @@
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 import "assets/index.scss";
+import "assets/themes.scss";
 import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import { store } from "redux/store";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <BrowserRouter>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </BrowserRouter>
 );
 

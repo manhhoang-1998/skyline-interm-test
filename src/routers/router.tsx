@@ -6,6 +6,7 @@ import Movies from "page/Movies/Movies";
 import Pokedex from "page/Pokedex/Pokedex";
 import WhereInTheWorld from "page/WhereInTheWorld/WhereInTheWorld";
 import TourApp from "page/TourApp/TourApp";
+import CountryInfo from "page/WhereInTheWorld/component/CountryInfo";
 
 export const ROUTE_LIST = [
   {
@@ -39,5 +40,9 @@ export const ROUTE_LIST = [
   {
     path: "/tourapp",
     element: <TourApp />,
+  },
+  {
+    path: "/world/info",
+    element: <CountryInfo />,
   },
 ];
