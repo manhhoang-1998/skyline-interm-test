@@ -13,37 +13,37 @@ function Main() {
         <h1 className="title">Project List</h1>
         <ol className="list">
           <li>
-            <Link className="item" to="/todo">
+            <Link className="item" to="todo/">
               Todo List
             </Link>
           </li>
           <li>
-            <Link className="item" to="/dadjokes">
+            <Link className="item" to="dadjokes/">
               Dad Jokes
             </Link>
           </li>
           <li>
-            <Link className="item" to="/github">
+            <Link className="item" to="github/">
               Github
             </Link>
           </li>
           <li>
-            <Link className="item" to="/movies">
+            <Link className="item" to="movies/">
               Movies
             </Link>
           </li>
           <li>
-            <Link className="item" to="/pokedex">
+            <Link className="item" to="pokedex/">
               Pokedex
             </Link>
           </li>
           <li>
-            <Link className="item" to="/world">
+            <Link className="item" to="world/">
               Where in the world ?
             </Link>
           </li>
           <li>
-            <Link className="item" to="/tourapp">
+            <Link className="item" to="tourapp/">
               Tour app
             </Link>
           </li>

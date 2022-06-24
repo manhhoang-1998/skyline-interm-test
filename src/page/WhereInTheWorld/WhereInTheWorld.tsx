@@ -1,8 +1,10 @@
-import { Col, Input, Row, Select, Spin } from "antd";
+import { Col, Input, Pagination, Row, Select, Spin } from "antd";
+import ComeBack from "component/comeback/ComeBack";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { RootState } from "redux/store";
+import LoaddingScreen from "./component/LoaddingScreen";
 import WorldHeader from "./component/WorldHeader";
 import { useWorld } from "./hook/useWorld";
 import "./WhereInTheWorld.scss";
@@ -18,7 +20,6 @@ function WhereInTheWorld() {
     onChangeInput,
     onSearchCountry,
     onSelectRegion,
-    onGetCountryInfo,
   } = useWorld();
 
   useEffect(() => {
@@ -27,11 +28,10 @@ function WhereInTheWorld() {
 
   return (
     <div className="world-page">
+      <ComeBack />
       <WorldHeader />
       {loading ? (
-        <div className="loading-screen">
-          <Spin tip="Loading..." size="large"></Spin>
-        </div>
+        <LoaddingScreen />
       ) : (
         <div className="world-body">
           <div className="world-option">
@@ -67,9 +67,8 @@ function WhereInTheWorld() {
                   key={index}
                 >
                   <Link
-                    to="info"
+                    to={`info?name=${item.name.common}`}
                     className="world-card"
-                    onClick={() => onGetCountryInfo(item)}
                   >
                     <img
                       className="world-card__flag"
@@ -87,7 +86,7 @@ function WhereInTheWorld() {
                         Region: {item.region}
                       </span>
                       <span className="world-card__desc-capital">
-                        Capital: {item.capital}
+                        Capital: {item.capital?.join(", ")}
                       </span>
                     </div>
                   </Link>
@@ -97,6 +96,7 @@ function WhereInTheWorld() {
           </div>
         </div>
       )}
+      {/* <Pagination defaultCurrent={1} total={200} /> */}
     </div>
   );
 }

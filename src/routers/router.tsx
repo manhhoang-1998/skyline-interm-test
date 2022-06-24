@@ -14,35 +14,35 @@ export const ROUTE_LIST = [
     element: <Home />,
   },
   {
-    path: "/todo",
+    path: "todo/",
     element: <TodoList />,
   },
   {
-    path: "/dadjokes",
+    path: "dadjokes/",
     element: <DadJokes />,
   },
   {
-    path: "/github",
+    path: "github/",
     element: <Github />,
   },
   {
-    path: "/movies",
+    path: "movies/",
     element: <Movies />,
   },
   {
-    path: "/pokedex",
+    path: "pokedex/",
     element: <Pokedex />,
   },
   {
-    path: "/world",
+    path: "world/",
     element: <WhereInTheWorld />,
   },
   {
-    path: "/tourapp",
+    path: "tourapp/",
     element: <TourApp />,
   },
   {
-    path: "/world/info",
+    path: "world/info/",
     element: <CountryInfo />,
   },
 ];

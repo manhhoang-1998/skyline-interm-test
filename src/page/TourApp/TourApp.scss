@@ -1,0 +1,228 @@
+$header-height: 60px;
+$category-width: 270px;
+
+.tour-app {
+  min-height: 100vh;
+  margin: auto;
+  background-color: #fff;
+  .tour-header {
+    width: 100%;
+    height: $header-height;
+    &__search {
+      margin: auto;
+      // max-width: 1440px;
+      box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.5);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      &-icon {
+        font-size: 1.6rem;
+        margin: 0 20px;
+        color: #999;
+      }
+      &-input {
+        height: 70%;
+        width: 100%;
+        border: none;
+        outline: none;
+        font-size: 1.6rem;
+      }
+    }
+  }
+  .tour-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba($color: #000000, $alpha: 0.1);
+  }
+
+  .tour-body {
+    max-width: 1440px;
+    padding: 0 20px;
+    display: flex;
+    margin: auto;
+    background-color: transparent;
+    .tour-category {
+      width: $category-width;
+      height: calc(100vh - $header-height);
+      margin-right: 20px;
+      padding-top: 15px;
+      &-title {
+        font-size: 1.6rem;
+        margin-bottom: 15px;
+      }
+      &-radio {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 25px;
+        &__btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 75px;
+          height: 40px;
+          text-align: center;
+          font-size: 1.2rem;
+          border-radius: 10px;
+          border: none;
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+          background-color: transparent;
+          &:not(:first-child)::before {
+            display: none;
+          }
+          span:first-child {
+            background-color: rgb(14, 13, 13);
+            border-radius: 10px;
+          }
+        }
+      }
+      &-checkbox {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 35px;
+        &__title {
+          font-size: 1.6rem;
+          margin-bottom: 10px;
+        }
+        &__item {
+          display: flex;
+          justify-content: space-between;
+          font-size: 1.4rem;
+          margin-bottom: 10px;
+          user-select: none;
+          cursor: pointer;
+          &-input {
+            span {
+              input:checked + span {
+                background-color: black;
+                border-color: black;
+              }
+            }
+          }
+        }
+      }
+      &-price {
+        &__text {
+          font-size: 1.6rem;
+          margin-bottom: 60px;
+        }
+        &__slider {
+          div:nth-child(2) {
+            background-color: black;
+          }
+          div:nth-child(4) {
+            border-color: black;
+          }
+          div:nth-child(5) {
+            border-color: black;
+          }
+        }
+      }
+      &-rate {
+        margin-top: 20px;
+        &__text {
+          font-size: 1.6rem;
+          margin: 10px 0;
+        }
+        &__radio {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          label {
+            width: 40px;
+            border: 1px solid rgb(209, 203, 203);
+            border-radius: 8px;
+            &::before {
+              display: none;
+            }
+            span {
+              width: 100%;
+              font-size: 1.2rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+          }
+        }
+      }
+    }
+    .tour-content {
+      padding-top: 15px;
+      width: calc(100% - $category-width);
+      height: calc(100vh - $header-height);
+      overflow-y: scroll;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      &__empty {
+        width: 50%;
+        margin: auto;
+      }
+      &__img {
+        width: 100%;
+        height: 200px;
+        border-radius: 15px;
+        object-fit: cover;
+      }
+      &__title {
+        display: flex;
+        justify-content: space-between;
+        margin: 15px auto 5px;
+        &-name {
+          font-size: 1.6rem;
+          font-weight: 500;
+        }
+        &-rate {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: aqua;
+          width: 30px;
+          height: 30px;
+          font-size: 1.2rem;
+          border-radius: 30%;
+        }
+      }
+      &__desc {
+        display: flex;
+        &-time {
+          font-size: 1.4rem;
+          font-weight: 500;
+          margin-right: 10px;
+        }
+        &-delivery {
+          font-size: 1.4rem;
+          color: #999;
+          margin-right: auto;
+        }
+        &-price {
+          font-size: 1.4rem;
+          font-weight: 500;
+          
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .tour-body {
+    flex-direction: column;
+    .tour-category {
+      width: 100% !important;
+      margin-bottom: 24px;
+      height: unset !important;
+    }
+    .tour-content {
+      width: 100% !important;
+      overflow-y: unset !important;
+    }
+  }
+}

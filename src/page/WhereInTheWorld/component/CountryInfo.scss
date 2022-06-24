@@ -1,4 +1,62 @@
-.country-info{
-    min-height: 100vh;
-    background-color: var(--gray-5-black-17);
+.country-info {
+  min-height: 100vh;
+  background-color: var(--gray-5-black-17);
+  .country-body {
+    max-width: 1440px;
+    margin: auto;
+    &-back {
+      width: 120px;
+      height: 30px;
+      margin: 15px 15px;
+      border: none;
+      border-radius: 4px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+      font-size: 1.6rem;
+      &__icon {
+        margin-right: 10px;
+        font-size: 1.2rem;
+      }
+    }
+  }
+  &-detail {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 100px 15px;
+    &__flag {
+      width: 300px;
+      height: 300px;
+      object-fit: contain;
+    }
+    &__desc {
+      &-name {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--black-3-gray-6);
+      }
+      &-wrap {
+        display: flex;
+        &-geo {
+          &:nth-child(2) {
+            margin-left: 30px;
+          }
+          &-key {
+            font-size: 1.8rem;
+            color: var(--black-3-gray-6);
+            &-value {
+                font-size: 1.4rem;
+                font-weight: 400;
+                margin-left: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) {
+    .country-info-detail {
+        flex-direction: column;
+    }
 }
