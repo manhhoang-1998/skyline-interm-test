@@ -1,6 +1,7 @@
 import { CheckboxValueType } from "antd/lib/checkbox/Group";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
+import { initializeConnect } from "react-redux/es/components/connect";
 import { loadingAction } from "redux/slice/loadingSlice";
 import { getTour } from "../services/tourApi";
 
@@ -16,12 +17,12 @@ export interface TourData {
   title: string;
 }
 
-interface FilterData {
-  [placeFilter: string]: number[];
-  cuisineFilter: number[];
-  priceFilter: number[];
-  rateFilter: number[];
-  nameFilter: number[];
+interface Config {
+  category: string | undefined;
+  cuisine: string[];
+  price: number[];
+  rate: number;
+  name: RegExp;
 }
 
 interface Itour {
@@ -37,42 +38,41 @@ interface Itour {
 export const useTour = (): Itour => {
   const baseData = useRef<TourData[]>([]);
 
-  const initFilter = {
-    placeFilter: [],
-    cuisineFilter: [],
-    priceFilter: [],
-    rateFilter: [],
-    nameFilter: [],
+  const inittialConfig: Config = {
+    category: "place",
+    cuisine: ["american", "chinese", "italian"],
+    price: [1000, 5000],
+    rate: 0,
+    name: /[a-z]/i,
   };
 
-  const [filterData, setFilterData] = useState<FilterData>(initFilter);
+  const [config, setConfig] = useState<Config>(inittialConfig);
   const [tourData, setTourData] = useState<TourData[]>([]);
   const dishpatch = useDispatch();
 
   useEffect(() => {
-    const dataRender = baseData.current.filter((item: TourData) => {
-      let result = true;
-      for (let key in filterData) {
-        if (filterData[key].length > 0) {
-          if (!filterData[key].includes(item.id)) {
-            result = false;
-            break;
-          }
-        } else result = true;
-      }
-      return result;
+    console.log(tourData);
+    const data = baseData.current.filter((item) => {
+      return (
+        item.category === config.category &&
+        config.cuisine.includes(item.cuisine) &&
+        config.price[0] <= item.price &&
+        item.price <= config.price[1] &&
+        (config.rate !== 0 ? config.rate === item.rating : true) &&
+        config.name.test(item.title)
+      );
     });
-    if (dataRender.length > 0) {
-      setTourData(dataRender);
-    }
-  }, [filterData]);
+    setTourData(data);
+  }, [config]);
 
   const getAllData = async () => {
     try {
       dishpatch(loadingAction.setLoading(true));
       const response = await getTour();
       baseData.current = response.data;
-      setTourData(response.data);
+      setTourData(
+        baseData.current.filter((item: TourData) => item.category === "place")
+      );
       dishpatch(loadingAction.setLoading(false));
     } catch (error) {
       dishpatch(loadingAction.setLoading(false));
@@ -81,62 +81,31 @@ export const useTour = (): Itour => {
   };
 
   const onSearch = (value: string) => {
-    const regex = /[a-z]/gi;
-    const newRegex =
-      value.match(regex)?.join("").toLocaleLowerCase() || /[a-z]/i;
-    const regexFilter = new RegExp(newRegex, "i");
-    const data = baseData.current.filter((item: TourData) =>
-      regexFilter.test(item.title)
-    );
-    if (data.length > 0 || (data.length == 0 && value === "")) {
-      setFilterData({
-        ...filterData,
-        nameFilter: data.map((item: TourData) => item.id),
-      });
-    } else {
-      setTourData([]);
-    }
+    if (value) {
+      const regex = /[a-z]/gi;
+      const newRegex =
+        value.match(regex)?.join("").toLocaleLowerCase() || /[]/i;
+      const regexFilter = new RegExp(newRegex, "i");
+      setConfig({ ...config, name: regexFilter });
+    } else setConfig({ ...config, name: inittialConfig.name });
   };
 
   const onChangeCategory = (value: string) => {
-    const data = baseData.current.filter(
-      (item: TourData) => item.category === value
-    );
-    setFilterData({
-      ...filterData,
-      placeFilter: data.map((item: TourData) => item.id),
-    });
+    setConfig({ ...config, category: value });
   };
 
-  const onChangeCuisine = (value: CheckboxValueType[]) => {
-    const data = baseData.current.filter((item: TourData) =>
-      value.includes(item.cuisine)
-    );
-    setFilterData({
-      ...filterData,
-      cuisineFilter: data.map((item: TourData) => item.id),
-    });
+  const onChangeCuisine = (value: any[]) => {
+    if (value.length > 0) {
+      setConfig({ ...config, cuisine: [...value] });
+    } else setConfig({ ...config, cuisine: inittialConfig.cuisine });
   };
 
   const onChangePrice = (value: [number, number]) => {
-    const data = baseData.current.filter(
-      (item: TourData) => value[0] <= item.price && item.price <= value[1]
-    );
-    setFilterData({
-      ...filterData,
-      priceFilter: data.map((item: TourData) => item.id),
-    });
+    setConfig({ ...config, price: [...value] });
   };
 
   const onChangeRating = (value: number) => {
-    const data = baseData.current.filter(
-      (item: TourData) => item.rating === value
-    );
-    console.log(data);
-    setFilterData({
-      ...filterData,
-      rateFilter: data.map((item: TourData) => item.id),
-    });
+    setConfig({ ...config, rate: value });
   };
   return {
     tourData,

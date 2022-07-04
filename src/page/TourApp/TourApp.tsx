@@ -27,7 +27,6 @@ function TourApp() {
   }, []);
 
   useEffect(() => {
-    console.log(inputValue);
     onSearch(debounceValue);
   }, [debounceValue]);
 
@@ -52,18 +51,11 @@ function TourApp() {
           <div className="tour-category">
             <h1 className="tour-category-title">Category</h1>
             <Radio.Group
-              defaultValue="all"
+              defaultValue="place"
               buttonStyle="solid"
               className="tour-category-radio"
               onChange={(e) => onChangeCategory(e.target.value)}
             >
-              <Radio.Button
-                name="all"
-                value="all"
-                className="tour-category-radio__btn"
-              >
-                ALL
-              </Radio.Button>
               <Radio.Button
                 name="place"
                 value="place"
@@ -131,7 +123,7 @@ function TourApp() {
             <div className="tour-category-rate">
               <h1 className="tour-category-rate__text">Star Rating</h1>
               <Radio.Group
-                defaultValue={6}
+                defaultValue={0}
                 buttonStyle="solid"
                 className="tour-category-rate__radio"
                 onChange={(e) => onChangeRating(e.target.value)}
@@ -151,7 +143,7 @@ function TourApp() {
                 <Radio.Button value={5}>
                   5 <StarFilled style={{ color: "gold" }} />
                 </Radio.Button>
-                <Radio.Button value={6}>All</Radio.Button>
+                <Radio.Button value={0}>All</Radio.Button>
               </Radio.Group>
             </div>
           </div>
